@@ -1,0 +1,20 @@
+{
+  "books": [],
+  "users": [
+    {
+      "id": 1737476902247,
+      "name": "Fazl Rahmani",
+      "email": "jane@example.com"
+    },
+    {
+      "id": 1737478726850,
+      "name": "Ayan Khan",
+      "email": "ayan@smthing.com"
+    },
+    {
+      "id": 1737478737960,
+      "name": "Ayan Khan",
+      "email": "ayan@smthing.com"
+    }
+  ]
+}
