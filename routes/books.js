@@ -80,3 +80,58 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+
+// Borrow a book
+router.post("/:id/borrow", (req, res) => {
+  const { id } = req.params;
+  const { userId, dueDate } = req.body;
+
+  if (!userId || !dueDate) {
+    return res.status(400).json({ error: "User ID and due date required!" });
+  }
+
+  const data = readData();
+  const book = data.books.find((b) => b.id === parseInt(id));
+  const user = data.users.find((u) => u.id === parseInt(userId));
+
+  if (!book) {
+    return res.status(404).json({ error: "Book not found." });
+  }
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found." });
+  }
+
+  if (book.borrowedBy) {
+    return res.status(400).json({ error: "Book is already borrowed." });
+  }
+
+  // Borrow the book
+  book.borrowedBy = userId;
+  book.dueDate = dueDate;
+
+  writeData(data);
+  res.json({ message: "The book has successfully borrowed.", book });
+});
+
+// Return the book
+router.post("/:id/return", (req, res) => {
+  const { id } = req.params;
+  const data = readData();
+  const book = data.books.find((b) => b.id === parseInt(id));
+
+  if (!book) {
+    return res.status(404).json({ error: "Book not found." });
+  }
+
+  if (!book.borrowedBy) {
+    return res.status(400).json({ error: "Book is not currently borrowed." });
+  }
+
+  // return the book
+  book.borrowedBy = null;
+  book.dueDate = null;
+
+  writeData(data);
+  res.json({ message: "Book returned!", book });
+});

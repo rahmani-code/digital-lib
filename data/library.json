@@ -1,20 +1,19 @@
 {
-  "books": [],
+  "books": [
+    {
+      "id": 1,
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "isbn": "9780743273565",
+      "borrowedBy": null,
+      "dueDate": null
+    }
+  ],
   "users": [
     {
-      "id": 1737476902247,
-      "name": "Fazl Rahmani",
+      "id": 1001,
+      "name": "Jane Doe",
       "email": "jane@example.com"
-    },
-    {
-      "id": 1737478726850,
-      "name": "Ayan Khan",
-      "email": "ayan@smthing.com"
-    },
-    {
-      "id": 1737478737960,
-      "name": "Ayan Khan",
-      "email": "ayan@smthing.com"
     }
   ]
 }
